@@ -2,3 +2,19 @@ git status //para ver las modificaciones de los archivos locales
 git add . agregar elementos
 git commit -m "se agrega el cambio en la clase" 
 git push -u origin main
+
+
+
+Respuesta corta: git add -A es igual a git add. + git add -u
+
+Explicación: Cuando hace un "git add.", Agrega todos los archivos (existentes, modificados y nuevos) al área de preparación pero no elimina los archivos que se han eliminado del disco.
+
+"git add -u" solo agrega los archivos rastreados actualmente (que se han modificado) al área de preparación y también verifica si se han eliminado (en caso afirmativo, se eliminan del área de preparación). Esto significa que no presenta nuevos archivos.
+
+Hacer "git add -A" realiza estos dos pasos, es decir, organiza todo el directorio tal como está.
+
+Resumen: git add -A: pone en escena todo git add -u: solo etapas archivos modificados git add. : Organiza todo, sin archivos eliminados
+
+O bien el "modo interactivo": git add -p
+
+Irá archivo por archivo, cambio por cambio, preguntando si agregar al stage. Todo cambio que le digas que "sí", entrará en el commit cuando lo hagas.
