@@ -1,0 +1,26 @@
+*total efectivo ventas
+SELECT SUM(ventas.total_venta) FROM ventas WHERE mediodepago='Efectivo' and idcaja=''
+
+*total debito ventas
+SELECT SUM(ventas.total_venta) FROM ventas WHERE mediodepago='Tarjeta de debito' and idcaja=''
+
+*total credito ventas
+SELECT SUM(ventas.total_venta) FROM ventas WHERE mediodepago="Tarjeta de credito" and idcaja=''
+
+*total transferencias ventas
+SELECT SUM(ventas.total_venta) FROM ventas WHERE mediodepago='transferencia' and idcaja=''
+
+*totao facturas A
+SELECT SUM(factura.total) FROM factura WHERE tipoFactura='Factura_A' and idcaja=''
+
+*total factura B
+SELECT SUM(factura.total) FROM factura WHERE tipoFactura='Ticket' and idcaja=''
+
+*total factura Comun
+SELECT SUM(factura.total) FROM factura WHERE tipoFactura='Orizontal-A4' and idcaja=''
+
+*total compras
+SELECT SUM(compra.total) FROM compra WHERE idcaja=''
+
+*total gastos
+SELECT SUM(importe) FROM gastos WHERE idcaja=''

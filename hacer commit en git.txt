@@ -1,0 +1,4 @@
+git status //para ver las modificaciones de los archivos locales
+git add . agregar elementos
+git commit -m "se agrega el cambio en la clase" 
+git push -u origin main

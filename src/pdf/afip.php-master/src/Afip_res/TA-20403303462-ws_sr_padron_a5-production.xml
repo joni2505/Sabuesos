@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<loginTicketResponse version="1.0">
+    <header>
+        <source>CN=wsaa, O=AFIP, C=AR, SERIALNUMBER=CUIT 33693450239</source>
+        <destination>SERIALNUMBER=CUIT 20403303462, CN=sabuesosproduccion</destination>
+        <uniqueId>1578882116</uniqueId>
+        <generationTime>2023-03-21T21:07:32.079-03:00</generationTime>
+        <expirationTime>2023-03-22T09:07:32.079-03:00</expirationTime>
+    </header>
+    <credentials>
+        <token>PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/Pgo8c3NvIHZlcnNpb249IjIuMCI+CiAgICA8aWQgc3JjPSJDTj13c2FhLCBPPUFGSVAsIEM9QVIsIFNFUklBTE5VTUJFUj1DVUlUIDMzNjkzNDUwMjM5IiB1bmlxdWVfaWQ9IjMzNDI3NjM3NiIgZ2VuX3RpbWU9IjE2Nzk0NDM1OTIiIGV4cF90aW1lPSIxNjc5NDg2ODUyIi8+CiAgICA8b3BlcmF0aW9uIHR5cGU9ImxvZ2luIiB2YWx1ZT0iZ3JhbnRlZCI+CiAgICAgICAgPGxvZ2luIGVudGl0eT0iMzM2OTM0NTAyMzkiIHNlcnZpY2U9IndzX3NyX3BhZHJvbl9hNSIgdWlkPSJTRVJJQUxOVU1CRVI9Q1VJVCAyMDQwMzMwMzQ2MiwgQ049c2FidWVzb3Nwcm9kdWNjaW9uIiBhdXRobWV0aG9kPSJjbXMiIHJlZ21ldGhvZD0iMjIiPgogICAgICAgICAgICA8cmVsYXRpb25zPgogICAgICAgICAgICAgICAgPHJlbGF0aW9uIGtleT0iMjA0MDMzMDM0NjIiIHJlbHR5cGU9IjQiLz4KICAgICAgICAgICAgPC9yZWxhdGlvbnM+CiAgICAgICAgPC9sb2dpbj4KICAgIDwvb3BlcmF0aW9uPgo8L3Nzbz4K</token>
+        <sign>FU37dDiKq8y6JQ4tZpJn44J3N5vaRZ8Xo8UlT6vu7N/FwGjpVOh2SJWuiTaMZHjhg3LYENlwTARhPHJrCRr8Vzsaac08NzDERmshjdi96TuWxWag/RPkv+NMjma5H2DnsDubKWwOkgATknbFm2hKVCUkkmJXSNEedPmpAGM5VdQ=</sign>
+    </credentials>
+</loginTicketResponse>
