@@ -344,6 +344,7 @@ echo "</select>
 
       $numFactura = $_POST['numero_factura'];
       $idcliente = $_POST['idcliente'];
+      $idlocal = $_POST['idlocal'];
       //$apellido = $_POST['apellido'];
       //traer id Cliente
       /*$rs = mysqli_query($conexion, "SELECT idcliente FROM cliente WHERE nombre ='$nombre'");
@@ -353,7 +354,7 @@ echo "</select>
    
       }*/
       $resultados = mysqli_query($conexion,"SELECT ventas.idproducto, idventa,numero_factura, producto.codigo_producto'codigo', producto.nombre_producto'producto', subtotal, ventas.cantidad, ventas.descuento, ventas.interes, ventas.total_venta, ventas.mediodepago, ventas.preciofinal, ventas.gramos FROM ventas
-      INNER JOIN producto on ventas.idproducto=producto.idproducto WHERE numero_factura='$numFactura' and idcliente='$idcliente' ");
+      INNER JOIN producto on ventas.idproducto=producto.idproducto WHERE numero_factura='$numFactura' and idcliente='$idcliente' and ventas.idlocal='$idlocal' ");
       
     $contador=0;
     $num=0;
@@ -390,7 +391,7 @@ echo "</select>
     $Sumcan=0;
     $CanVen=0;
     $totalProductos=0;
-    $resultados = mysqli_query($conexion,"SELECT COUNT(idventa)'cantventa', SUM(cantidad)'sumcantidad' FROM ventas WHERE numero_factura = '$num' ");
+    $resultados = mysqli_query($conexion,"SELECT COUNT(idventa)'cantventa', SUM(cantidad)'sumcantidad' FROM ventas WHERE numero_factura = '$num' and ventas.idlocal=$idlocal and ventas.idcliente=$idcliente ");
     while($consulta = mysqli_fetch_array($resultados))
 	    {
         $CanVen = $consulta['cantventa'];
@@ -401,7 +402,7 @@ echo "</select>
       echo "<h5>Total de Bultos: $totalProductos </h5>";
 
       echo "<tfoot>";
-      $resultados = mysqli_query($conexion,"SELECT SUM(total_venta)'total' FROM ventas where numero_factura='$numFactura'");
+      $resultados = mysqli_query($conexion,"SELECT SUM(total_venta)'total' FROM ventas where numero_factura='$numFactura' and ventas.idlocal=$idlocal and ventas.idcliente=$idcliente");
         while($consulta = mysqli_fetch_array($resultados))
        {
          $total = $consulta['total'];        

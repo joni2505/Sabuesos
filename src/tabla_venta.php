@@ -121,13 +121,13 @@
     ';
 
       $factura = $_POST['buscar_factura'];
-      
+      $idlocal = $_POST['idlocal'];
       if($factura>0){
         $resultados = mysqli_query($conexion,"SELECT idfactura, numero_factura, cliente.idcliente, cliente.nombre, importe, total,date_format(fecha, '%d-%m-%Y')'fecha',tipoventa, cliente.idcliente FROM factura 
-        INNER JOIN cliente on factura.idcliente=cliente.idcliente WHERE numero_factura='$factura' ");
+        INNER JOIN cliente on factura.idcliente=cliente.idcliente WHERE factura.idlocal=$idlocal and numero_factura='$factura'  ");
       }else{
         $resultados = mysqli_query($conexion,"SELECT idfactura, numero_factura, cliente.idcliente, cliente.nombre, importe, total,date_format(fecha, '%d-%m-%Y')'fecha',tipoventa,  cliente.idcliente FROM factura 
-      INNER JOIN cliente on factura.idcliente=cliente.idcliente ");
+      INNER JOIN cliente on factura.idcliente=cliente.idcliente WHERE factura.idlocal=$idlocal ");
       }
       
       

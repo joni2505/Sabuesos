@@ -9,6 +9,8 @@ $feha_actual=date("d-m-Y");
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 $hora_actual=date("H:i:s");
 $numFactura = $_GET['factura'];
+$idlocal = $_GET['local'];
+$idcliente = $_GET['cliente'];
 
 ?>
 <!DOCTYPE HTML5>
@@ -59,16 +61,16 @@ table.ticket{
     
     $factura = mysqli_query($conexion, "SELECT cliente.direccion, cliente.nombre, cliente.celular, usuario.usuario, factura.numero_factura, total, ventas.descuento, ventas.interes, factura.importe, factura.cambio, factura.fecha, producto.codigo_producto'codigo', producto.nombre_producto, ventas.cantidad, factura.tipoventa, factura.mediopago, factura.observacion, usuario.usuario'vendedor'
         FROM factura 
-        INNER JOIN ventas on factura.numero_factura=ventas.numero_factura
+        INNER JOIN ventas on factura.idlocal=ventas.idlocal
         INNER JOIN producto on ventas.idproducto=producto.idproducto
         INNER JOIN cliente on factura.idcliente=cliente.idcliente
-        INNER JOIN usuario on factura.idusuario=usuario.idusuario WHERE factura.numero_factura='$numFactura'");
+        INNER JOIN usuario on factura.idusuario=usuario.idusuario WHERE factura.numero_factura='$numFactura' and factura.idlocal = $idlocal and factura.idcliente=$idcliente");
         $datosfac = mysqli_fetch_assoc($factura);  
         
     ?>
     <?php
     //traer vendedor
-    $result2 = mysqli_query($conexion, "SELECT usuario.nombre FROM factura LEFT JOIN usuario on factura.idvendedor=usuario.idusuario WHERE factura.numero_factura='$numFactura' ");
+    $result2 = mysqli_query($conexion, "SELECT usuario.nombre FROM factura LEFT JOIN usuario on factura.idvendedor=usuario.idusuario WHERE factura.numero_factura='$numFactura' and factura.idlocal = $idlocal and factura.idcliente=$idcliente");
             $result = mysqli_num_rows($result2);
           
             while($row2 = mysqli_fetch_array($result2))
@@ -107,10 +109,10 @@ table.ticket{
                 $sum = 0;
                     $query = mysqli_query($conexion, "SELECT cliente.nombre, cliente.celular, usuario.usuario, factura.numero_factura, total, ventas.descuento, ventas.interes, factura.importe, factura.cambio, factura.fecha, producto.nombre_producto, producto.codigo_producto'codigo',
                     ventas.cantidad, factura.tipoventa, ventas.total_venta, factura.mediopago,ventas.gramos, ventas.subtotal, ventas.preciofinal FROM factura 
-                            INNER JOIN ventas on factura.numero_factura=ventas.numero_factura
+                            INNER JOIN ventas on factura.idlocal=ventas.idlocal
                             INNER JOIN producto on ventas.idproducto=producto.idproducto
                             INNER JOIN cliente on factura.idcliente=cliente.idcliente
-                            INNER JOIN usuario on factura.idusuario=usuario.idusuario WHERE factura.numero_factura='$numFactura'");
+                            INNER JOIN usuario on factura.idusuario=usuario.idusuario WHERE factura.numero_factura='$numFactura' and factura.idlocal = $idlocal and factura.idcliente=$idcliente");
 
                
                 $i=1;
@@ -170,7 +172,7 @@ table.ticket{
                          <td style='font-size: 14px;'></td>
                          <td style='font-size: 14px;'><?php echo $sum ?></td>
                          <?php 
-$factura = mysqli_query($conexion, "SELECT total FROM factura WHERE numero_factura='$numFactura'");
+$factura = mysqli_query($conexion, "SELECT total FROM factura WHERE numero_factura='$numFactura' and factura.idlocal = $idlocal and factura.idcliente=$idcliente");
 while ($row = mysqli_fetch_assoc($factura)) {
  
    $total = $row['total'];
@@ -201,10 +203,10 @@ while ($row = mysqli_fetch_assoc($factura)) {
     <?php 
     $factura = mysqli_query($conexion, "SELECT cliente.direccion, cliente.nombre, cliente.celular, usuario.usuario, factura.numero_factura, total, ventas.descuento, ventas.interes, factura.importe, factura.cambio, factura.fecha, producto.codigo_producto'codigo', producto.nombre_producto, ventas.cantidad, factura.tipoventa, factura.mediopago, factura.observacion, usuario.usuario'vendedor'
         FROM factura 
-        INNER JOIN ventas on factura.numero_factura=ventas.numero_factura
+        INNER JOIN ventas on factura.idlocal=ventas.idlocal
         INNER JOIN producto on ventas.idproducto=producto.idproducto
         INNER JOIN cliente on factura.idcliente=cliente.idcliente
-        INNER JOIN usuario on factura.idusuario=usuario.idusuario WHERE factura.numero_factura='$numFactura'");
+        INNER JOIN usuario on factura.idusuario=usuario.idusuario WHERE factura.numero_factura='$numFactura' and factura.idlocal = $idlocal and factura.idcliente=$idcliente");
         $datosfac = mysqli_fetch_assoc($factura);  
         
     ?>
@@ -239,10 +241,10 @@ while ($row = mysqli_fetch_assoc($factura)) {
                 $sum = 0;
                     $query = mysqli_query($conexion, "SELECT cliente.nombre, cliente.celular, usuario.usuario, factura.numero_factura, total, ventas.descuento, ventas.interes, factura.importe, factura.cambio, factura.fecha, producto.nombre_producto, producto.codigo_producto'codigo',
                     ventas.cantidad, factura.tipoventa, ventas.total_venta, factura.mediopago,ventas.gramos, ventas.subtotal, ventas.preciofinal FROM factura 
-                            INNER JOIN ventas on factura.numero_factura=ventas.numero_factura
+                            INNER JOIN ventas on factura.idlocal=ventas.idlocal
                             INNER JOIN producto on ventas.idproducto=producto.idproducto
                             INNER JOIN cliente on factura.idcliente=cliente.idcliente
-                            INNER JOIN usuario on factura.idusuario=usuario.idusuario WHERE factura.numero_factura='$numFactura'");
+                            INNER JOIN usuario on factura.idusuario=usuario.idusuario WHERE factura.numero_factura='$numFactura' and factura.idlocal = $idlocal and factura.idcliente=$idcliente");
 
                
                 $i=1;
@@ -301,7 +303,7 @@ while ($row = mysqli_fetch_assoc($factura)) {
                          <td style='font-size: 14px;'></td>
                          <td style='font-size: 14px;'><?php echo $sum ?></td>
                          <?php 
-$factura = mysqli_query($conexion, "SELECT total FROM factura WHERE numero_factura='$numFactura'");
+$factura = mysqli_query($conexion, "SELECT total FROM factura WHERE numero_factura='$numFactura' and factura.idlocal = $idlocal and factura.idcliente=$idcliente");
 while ($row = mysqli_fetch_assoc($factura)) {
  
    $total = $row['total'];
@@ -316,16 +318,6 @@ while ($row = mysqli_fetch_assoc($factura)) {
          </tbody>
 
 </table>
-
-<?php 
-$factura = mysqli_query($conexion, "SELECT total FROM factura WHERE numero_factura='$numFactura'");
-while ($row = mysqli_fetch_assoc($factura)) {
- 
-   $total = $row['total'];
-    
-}
-
-?>
 
 </td>
 

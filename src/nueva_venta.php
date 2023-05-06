@@ -545,9 +545,11 @@ function listaFactura()
     { 
       
       buscar = document.getElementById('buscar').value;
+      idlocal = $("#idlocal").val();
       var parametros = 
       {
         "buscar_factura" : buscar,
+        "idlocal" : idlocal,
         "accion" : "4"
         
         
@@ -652,7 +654,7 @@ function cobrar_venta()
           tablacarrito_venta();
           
         }if(impresion=="Orizontal-A4"){
-          url = 'pdf/ticket.php?factura=' + factura;
+          url = 'pdf/ticket.php?factura=' + factura + '&local=' + idlocal + '&cliente=' +idcliente;
           window.open(url, '_blank')
           location.href="nueva_venta.php";
           tablacarrito_venta();
@@ -1100,12 +1102,13 @@ function insertar_carrito_venta()
       
       factura =  $("#numero_factura").val();
       idcliente = $("#idcliente").val();
-    
+      idlocal = $("#idlocal").val();
       var parametros = 
       {
         "mostrar_tabla_carrito" : 1,
         "numero_factura" : factura,
         "idcliente" : idcliente,
+        "idlocal" : idlocal,
         "accion" : "4"
         
         

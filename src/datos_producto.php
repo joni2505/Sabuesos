@@ -3,6 +3,7 @@
 //cobrar carrito venta
 if(isset($_POST['cobrar_carrito_venta']))
 	{
+    
         $idusuario = $_POST['idusuario'];
         $idlocal = $_POST['idlocal'];
         $idcliente = $_POST['idcliente'];
@@ -755,6 +756,14 @@ if(isset($_POST['editar_factura']))
              echo '<script language="javascript">';
              echo 'alert("Error para eliminar factura");';
              echo '</script>';
-         } 
+         }
+         
+         /*$rs = mysqli_query($conexion,"SELECT idlocal FROM factura WHERE factura.idfactura=$idfactura");
+            while($row = mysqli_fetch_array($rs))
+            {
+              $idlocal = $row['idlocal'];
+            }*/
+         //$rs = mysqli_query($conexion, "DELETE FROM ventas WHERE idcliente=$idcliente and factura=$factura and idlocal=$idlocal");
+
     }
 ?>
