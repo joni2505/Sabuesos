@@ -59,12 +59,9 @@ table.ticket{
 
     <?php 
     
-    $factura = mysqli_query($conexion, "SELECT cliente.direccion, cliente.nombre, cliente.celular, usuario.usuario, factura.numero_factura, total, ventas.descuento, ventas.interes, factura.importe, factura.cambio, factura.fecha, producto.codigo_producto'codigo', producto.nombre_producto, ventas.cantidad, factura.tipoventa, factura.mediopago, factura.observacion, usuario.usuario'vendedor'
-        FROM factura 
-        INNER JOIN ventas on factura.idlocal=ventas.idlocal
-        INNER JOIN producto on ventas.idproducto=producto.idproducto
-        INNER JOIN cliente on factura.idcliente=cliente.idcliente
-        INNER JOIN usuario on factura.idusuario=usuario.idusuario WHERE factura.numero_factura='$numFactura' and factura.idlocal = $idlocal and factura.idcliente=$idcliente");
+    $factura = mysqli_query($conexion, "SELECT factura.numero_factura, factura.total, usuario.nombre'vendedor', cliente.nombre, cliente.celular, cliente.direccion, factura.observacion FROM factura
+    INNER JOIN usuario on factura.idusuario=usuario.idusuario
+    INNER JOIN cliente on factura.idcliente=cliente.idcliente WHERE factura.numero_factura='$numFactura' and factura.idlocal = $idlocal and factura.idcliente=$idcliente");
         $datosfac = mysqli_fetch_assoc($factura);  
         
     ?>
@@ -107,12 +104,12 @@ table.ticket{
              <?php
                 require_once '../../conexion.php';
                 $sum = 0;
-                    $query = mysqli_query($conexion, "SELECT cliente.nombre, cliente.celular, usuario.usuario, factura.numero_factura, total, ventas.descuento, ventas.interes, factura.importe, factura.cambio, factura.fecha, producto.nombre_producto, producto.codigo_producto'codigo',
-                    ventas.cantidad, factura.tipoventa, ventas.total_venta, factura.mediopago,ventas.gramos, ventas.subtotal, ventas.preciofinal FROM factura 
-                            INNER JOIN ventas on factura.idlocal=ventas.idlocal
-                            INNER JOIN producto on ventas.idproducto=producto.idproducto
-                            INNER JOIN cliente on factura.idcliente=cliente.idcliente
-                            INNER JOIN usuario on factura.idusuario=usuario.idusuario WHERE factura.numero_factura='$numFactura' and factura.idlocal = $idlocal and factura.idcliente=$idcliente");
+                    $query = mysqli_query($conexion, "SELECT cliente.nombre, cliente.celular, usuario.nombre'vendedor', ventas.cantidad, producto.nombre_producto, ventas.subtotal, ventas.gramos, ventas.preciofinal, ventas.total_venta,
+                    ventas.descuento, ventas.interes FROM ventas 
+                    INNER JOIN producto on ventas.idproducto=producto.idproducto
+                    INNER JOIN locales on ventas.idlocal=locales.idlocal 
+                    INNER JOIN usuario on ventas.idusuario=usuario.idusuario
+                    INNER JOIN cliente on ventas.idcliente=cliente.idcliente WHERE numero_factura=$numFactura and ventas.idcliente=$idcliente and ventas.idlocal=$idlocal");
 
                
                 $i=1;
@@ -201,12 +198,9 @@ while ($row = mysqli_fetch_assoc($factura)) {
 <p style='text-align:left; font-size:13px;'><b>Correo:</b> <?php echo $datos['email'];?></p></td>
 
     <?php 
-    $factura = mysqli_query($conexion, "SELECT cliente.direccion, cliente.nombre, cliente.celular, usuario.usuario, factura.numero_factura, total, ventas.descuento, ventas.interes, factura.importe, factura.cambio, factura.fecha, producto.codigo_producto'codigo', producto.nombre_producto, ventas.cantidad, factura.tipoventa, factura.mediopago, factura.observacion, usuario.usuario'vendedor'
-        FROM factura 
-        INNER JOIN ventas on factura.idlocal=ventas.idlocal
-        INNER JOIN producto on ventas.idproducto=producto.idproducto
-        INNER JOIN cliente on factura.idcliente=cliente.idcliente
-        INNER JOIN usuario on factura.idusuario=usuario.idusuario WHERE factura.numero_factura='$numFactura' and factura.idlocal = $idlocal and factura.idcliente=$idcliente");
+    $factura = mysqli_query($conexion, "SELECT factura.numero_factura, factura.total, usuario.nombre'vendedor', cliente.nombre, cliente.celular, cliente.direccion, factura.observacion FROM factura
+    INNER JOIN usuario on factura.idusuario=usuario.idusuario
+    INNER JOIN cliente on factura.idcliente=cliente.idcliente WHERE factura.numero_factura='$numFactura' and factura.idlocal = $idlocal and factura.idcliente=$idcliente");
         $datosfac = mysqli_fetch_assoc($factura);  
         
     ?>
@@ -239,12 +233,12 @@ while ($row = mysqli_fetch_assoc($factura)) {
              <?php
                 require_once '../../conexion.php';
                 $sum = 0;
-                    $query = mysqli_query($conexion, "SELECT cliente.nombre, cliente.celular, usuario.usuario, factura.numero_factura, total, ventas.descuento, ventas.interes, factura.importe, factura.cambio, factura.fecha, producto.nombre_producto, producto.codigo_producto'codigo',
-                    ventas.cantidad, factura.tipoventa, ventas.total_venta, factura.mediopago,ventas.gramos, ventas.subtotal, ventas.preciofinal FROM factura 
-                            INNER JOIN ventas on factura.idlocal=ventas.idlocal
-                            INNER JOIN producto on ventas.idproducto=producto.idproducto
-                            INNER JOIN cliente on factura.idcliente=cliente.idcliente
-                            INNER JOIN usuario on factura.idusuario=usuario.idusuario WHERE factura.numero_factura='$numFactura' and factura.idlocal = $idlocal and factura.idcliente=$idcliente");
+                    $query = mysqli_query($conexion, "SELECT cliente.nombre, cliente.celular, usuario.nombre'vendedor', ventas.cantidad, producto.nombre_producto, ventas.subtotal, ventas.gramos, ventas.preciofinal, ventas.total_venta,
+                    ventas.descuento, ventas.interes FROM ventas 
+                    INNER JOIN producto on ventas.idproducto=producto.idproducto
+                    INNER JOIN locales on ventas.idlocal=locales.idlocal 
+                    INNER JOIN usuario on ventas.idusuario=usuario.idusuario
+                    INNER JOIN cliente on ventas.idcliente=cliente.idcliente WHERE numero_factura=$numFactura and ventas.idcliente=$idcliente and ventas.idlocal=$idlocal");
 
                
                 $i=1;
