@@ -30,7 +30,7 @@
         
         $imgContenido = addslashes(file_get_contents($image));
         $alert = "";
-        if (empty($codigo) || empty($nombre_producto) || empty($precio) || $precio <  0 || empty($stock) || $unidad < 0 || empty($idrubro) || empty($idmarca)) {
+        if (empty($codigo)) {
             $alert = '<div class="alert alert-danger" role="alert">
                 Todo los campos son obligatorios
               </div>';
@@ -60,7 +60,7 @@
         }
         else{
           $alert = "";
-        if (empty($codigo) || empty($nombre_producto) || empty($precio) || $precio <  0 || empty($stock) || $unidad < 0 || empty($idrubro) || empty($idmarca)) {
+        if (empty($codigo)) {
             $alert = '<div class="alert alert-danger" role="alert">
                 Todo los campos son obligatorios
               </div>';

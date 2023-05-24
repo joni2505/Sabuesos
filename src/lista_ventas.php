@@ -7,12 +7,15 @@ $permiso = "venta";
   if (empty($existe) && $id_user != 1) {
     echo "<script> window.location.replace('permisos.php') </script>";
   }
+ 
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 $feha_actual=date("d-m-Y");
+ 
 $rs = mysqli_query($conexion, "SELECT * FROM ventas ");
 
         while($row = mysqli_fetch_array($rs))
             {
+            
                 $nf=$row['numero_factura'];
                 
             } 

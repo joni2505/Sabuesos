@@ -1,9 +1,17 @@
 <?php
-
+    //conexion local
     $host = "localhost";
-    $user = "u765647919_creating";
-    $clave = "600269Joni2505";
-    $bd = "u765647919_sabuesos";
+    $user = "root";
+    $clave = "";
+    $bd = "sabuesos";
+
+    //conexion mysql remoto
+    //$host = "185.213.81.103";
+    //$ServerName = "185.213.81.103";
+    //$user = "u765647919_creating";
+    //$clave = "600269Joni2505";
+    //$bd = "u765647919_sabuesos";
+    
 
     $conexion = mysqli_connect($host,$user,$clave,$bd);
     if (mysqli_connect_errno()){
