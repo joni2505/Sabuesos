@@ -28,3 +28,5 @@ git fetch origin o git pull origin
 El comando git fetch origin actualizará el repositorio local con los cambios que se tienen en el repositorio remoto. Es importante mencionar que este comando NO modifica los archivos en el working copy, es decir, sólo actualiza el repositorio local sin tocar los archivos del sistema operativo sobre los que estamos trabajando. Para que estos cambios se hagan efectivos sobre nuestros archivos en el working copy, debemos ejecutar el comando git merge.
 
 El comando git pull origin tiene el mismo efecto que git fetch origin, pero adicionalmente ejecuta el comando git merge. Esto quiere decir, que los cambios SÍ son aplicados al working copy.
+ //clonar git
+git clone https://github.com/joni2505/Sabuesos.git
