@@ -631,7 +631,7 @@ function cobrar_venta()
         }
 
         if(impresion=="Ticket_comun"){
-        url = 'pdf/ticket_comun.php?factura=' + factura;
+        url = 'pdf/ticket_pg.php?factura=' + factura + '&local=' + idlocal + '&cliente=' +idcliente;
         window.open(url, '_blank')
         location.href="nueva_venta.php";
         //limpiar();

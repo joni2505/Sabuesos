@@ -10,7 +10,7 @@ $pdf->AddPage();
 $pdf->SetMargins(10, 10, 10);
 $pdf->SetTitle("Comprobante de Pago");
 $pdf->SetFont('Arial','B',12); 
-$pdf->Image("sabueso.jpg", 11, 0, 60, 20, 'JPG');
+//$pdf->Image("sabueso.jpg", 11, 0, 60, 20, 'JPG');
 $pdf->Ln(12);
 $config = mysqli_query($conexion, "SELECT * FROM configuracion");
 $datos = mysqli_fetch_assoc($config);
@@ -149,7 +149,7 @@ $pdf->Cell(8, 5, "--------------------------------------------------------------
 //Copia de la Factura
 $pdf->Ln(10);
 $pdf->SetFont('Arial','B',12); 
-$pdf->Image("../../assets/img/sabueso.jpg", 11, 142, 60, 20, 'JPG');
+//$pdf->Image("../../assets/img/sabueso.jpg", 11, 142, 60, 20, 'JPG');
 $pdf->Ln(35);
 $config = mysqli_query($conexion, "SELECT * FROM configuracion");
 $datos = mysqli_fetch_assoc($config);

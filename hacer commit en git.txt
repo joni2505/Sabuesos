@@ -1,7 +1,7 @@
 git status //para ver las modificaciones de los archivos locales
 git add . agregar elementos
 git commit -m "se agrega el cambio en la clase" 
-git push -u origin main
+git push -u origin main o git push -f origin main
 
 ************************************************************
 
@@ -30,3 +30,9 @@ El comando git fetch origin actualizará el repositorio local con los cambios qu
 El comando git pull origin tiene el mismo efecto que git fetch origin, pero adicionalmente ejecuta el comando git merge. Esto quiere decir, que los cambios SÍ son aplicados al working copy.
  //clonar git
 git clone https://github.com/joni2505/Sabuesos.git
+
+Puede confirmar los cambios antes de realizar la combinación o guardarlos:
+
+git stash save
+git pull
+git stash pop
