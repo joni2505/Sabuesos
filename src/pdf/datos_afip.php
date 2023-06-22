@@ -62,7 +62,8 @@ require_once '../../conexion.php';
             $res = $afip->ElectronicBilling->CreateNextVoucher($data);
             $cae = $res['CAE']; //CAE asignado el comprobante
             $caefvt = $res['CAEFchVto']; //Fecha de vencimiento del CAE (yyyy-mm-dd)
-            //$fechaComprobante = $res['CbteFch']=intval(date('Ymd'));
+            $fechaComprobante = $res['CbteFch']=intval(date('Ymd'));
+            
             
         
     class PDF extends FPDF{

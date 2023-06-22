@@ -623,7 +623,7 @@ function cobrar_venta()
         $('#mostrar_carrito').html(mensaje);
 
         if(impresion=="Ticket_B"){
-        url = 'pdf/ticket_B.php?factura=' + factura;
+        url = 'pdf/ticketB.php?factura=' + factura + '&local=' + idlocal + '&cliente=' +idcliente;
         window.open(url, '_blank')
         location.href="nueva_venta.php";
         //limpiar();

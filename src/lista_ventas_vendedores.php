@@ -79,7 +79,7 @@ $permiso = "venta";
 </div>
 </div>
 
-<script type="text/javascript" src="js/categoria.js"></script>
+
 <script type="text/javascript">
 
     //setiar fecha
