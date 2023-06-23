@@ -357,9 +357,9 @@ while($row = mysqli_fetch_array($rs))
                               <input class="form-check-input" type="checkbox" id="checkA" onchange="comprobarA();" >
                               <label class="form-check-label" for="flexSwitchCheckChecked">Fact. Electronica A</label>
                             </div>   
-                            <label>CUIT</label>
-                            <input readonly="readonly" type="number" placeholder="CUIT o DNI" class="form-control" name="cuit" value="" id="cuit" style='font-size: 20px; text-transform: uppercase; color: blue;' spa required>
-                          </div> 
+                            <!--<label>CUIT</label>
+                            <input readonly="readonly" type="number" placeholder="CUIT o DNI" class="form-control" name="cuit" value="" id="cuit" style='font-size: 20px; text-transform: uppercase; color: blue;' spa required>-->
+                          </div>
                           <div class="form-group">
                             <label>Total Carrito</label>
                             <input readonly="readonly" type="number" class="form-control" name="total_input" value="0" id="total_input" style='font-size: 20px; text-transform: uppercase; color: green;' required>
@@ -863,11 +863,13 @@ $(document).ready(function () {
   function buscar_datos_suelto() 
   {
     codigo = $("#codigo_suelto").val();
-  
+    idlocal = $("#idlocal").val();
+    //alert(codigo);
     
     var parametros = 
     {
     "codigo" : codigo,
+    "idlocal" : idlocal,
     "buscar_producto_suelto": "1"
       
       
