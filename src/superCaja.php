@@ -96,8 +96,7 @@ if (!empty($_POST)) {
 </div>
 
 <div class="table-responsive">
-  <input class="form-control col-md-3 light-table-filter" data-table="order-table" type="text" placeholder="Buscar Caja"><br>
-  <table class="table table-bordered order-table">
+  <table class="table table-striped table-bordered" id="tbl">
     <thead class="thead-dark">
       <tr>
         <th>#</th>
@@ -200,7 +199,7 @@ if (!empty($_POST)) {
   }
 
   //buscardor tbl
-  (function(document) {
+ /* (function(document) {
     'use strict';
 
     var LightTableFilter = (function(Arr) {
@@ -239,6 +238,6 @@ if (!empty($_POST)) {
       }
     });
 
-  })(document);
+  })(document);*/
 </script>
 <?php include_once "includes/footer.php"; ?>
