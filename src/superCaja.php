@@ -18,6 +18,7 @@ if (!empty($_POST)) {
     $nombreCaja = $_POST['nombreCaja'];
     $fechaApertura = $_POST['fechaApertura'];
     $EfectivoApertura = $_POST['efectivoApertura'];
+
     //$fechaCierre = $_POST['fechaCierre'];
     $query = mysqli_query($conexion, "SELECT * FROM superCaja where nombreCaja = '$nombreCaja' and fechaApertura='$fechaApertura'");
     $result = mysqli_fetch_array($query);
@@ -68,7 +69,7 @@ if (!empty($_POST)) {
     <div class="input-group">
       <span class="input-group-text">Cierre de Caja</span>
 
-      <select name="caja" id="caja" style="width:15%;">
+      <select name="caja" id="caja" style="width:15%;" onchange="getefectivo();">
         <?php
         //traer sedes
         include "../conexion.php";
@@ -78,6 +79,7 @@ if (!empty($_POST)) {
 
           $nom_caja = $row['nombreCaja'];
           $idcaja = $row['idsuperCaja'];
+        
         ?>
 
           <option value="<?php echo $idcaja; ?>"><?php echo $nom_caja; ?></option>
@@ -85,9 +87,12 @@ if (!empty($_POST)) {
         <?php
         }
 
+
         ?>
       </select>
 
+      <input type="number" placeholder="efectivo en caja" id="efectivoEnCaja" class="form-control " name="efectivoEnCaja" disabled>
+      <input type="number" placeholder="Retiro en Efectivo" id="retiroEfectivo" class="form-control " name="retiroEfectivo">
       <input type="date" style="width:15%" name="fechaCierre" id="fechaCierre">
       <input type="submit" value="Cerrar" class="btn btn-info" onclick="cerrar()">
     </div>
@@ -105,6 +110,7 @@ if (!empty($_POST)) {
         <th>Efectivo Apertura</th>
         <th>Fecha Cierre</th>
         <th>Efectivo Cierre</th>
+        <th>Retiro de Efectivo</th>
         <th>Estado</th>
         <th>Acciones</th>
       </tr>
@@ -113,7 +119,7 @@ if (!empty($_POST)) {
       <?php
       include "../conexion.php";
 
-      $query = mysqli_query($conexion, "SELECT idsuperCaja, nombreCaja, fechaApertura, efectivoApertura, fechaCierre, efectivoCierre, estado FROM superCaja ");
+      $query = mysqli_query($conexion, "SELECT idsuperCaja, nombreCaja, fechaApertura, efectivoApertura, fechaCierre, efectivoCierre, retiroEfectivo, estado FROM superCaja ");
       $result = mysqli_num_rows($query);
       if ($result > 0) {
         while ($data = mysqli_fetch_assoc($query)) {
@@ -128,9 +134,10 @@ if (!empty($_POST)) {
             <td><?php echo $data['idsuperCaja'] ?> </td>
             <td><?php echo $data['nombreCaja']; ?></td>
             <td><?php echo $data['fechaApertura']; ?></td>
-            <td><?php echo $data['efectivoApertura']; ?></td>
+            <td><?php echo "$".$data['efectivoApertura']; ?></td>
             <td><?php echo $data['fechaCierre']; ?></td>
-            <td><?php echo $data['efectivoCierre']; ?></td>
+            <td style="color: green;"><?php echo "$".$data['efectivoCierre']; ?></td>
+            <td style="color: red;"><?php echo "$".$data['retiroEfectivo']; ?></td>
             <td><?php echo $estado; ?></td>
           <?php
           if ($data['estado'] == 0) {
@@ -147,7 +154,7 @@ if (!empty($_POST)) {
             $id = $data['idsuperCaja'];
             echo '<td>
                       
-                  <a href="pdf/reporteCaja.php?idcaja='.$data['idsuperCaja'].'" class="btn btn-info"><i class="fas fa-print"></i></a>
+                  <a href="pdf/reporteCaja.php?idcaja=' . $data['idsuperCaja'] . '" class="btn btn-info"><i class="fas fa-print"></i></a>
                   
                   </td>';
           }
@@ -166,13 +173,42 @@ if (!empty($_POST)) {
 <!-- End of Main Content -->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
 <script>
+  function getefectivo() {
+    var idcaja = document.getElementById("caja").value;
+
+    var parametros = {
+      "obtenerfectivo": "1",
+      "idcaja": idcaja
+
+    };
+    $.ajax({
+      data: parametros,
+      dataType: 'json',
+      url: 'datos_producto.php',
+      type: 'POST',
+
+      error: function() {
+        alert("Error");
+      },
+
+      success: function(valores) {
+        $("#efectivoEnCaja").val(valores.efectivo);
+        alert(valores.efectivo);
+      }
+    })
+  }
+
+
   function cerrar() {
     idcaja = $("#caja").val();
     fechaCierre = $("#fechaCierre").val();
+    retiroEfectivo = $("#retiroEfectivo").val();
     var parametros = {
       "cerrarCaja": 1,
       "idcaja": idcaja,
+      "retiroEfectivo": retiroEfectivo,
       "fechaCierre": fechaCierre
 
     };
@@ -199,45 +235,45 @@ if (!empty($_POST)) {
   }
 
   //buscardor tbl
- /* (function(document) {
-    'use strict';
+  /* (function(document) {
+     'use strict';
 
-    var LightTableFilter = (function(Arr) {
+     var LightTableFilter = (function(Arr) {
 
-      var _input;
+       var _input;
 
-      function _onInputEvent(e) {
-        _input = e.target;
-        var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
-        Arr.forEach.call(tables, function(table) {
-          Arr.forEach.call(table.tBodies, function(tbody) {
-            Arr.forEach.call(tbody.rows, _filter);
-          });
-        });
-      }
+       function _onInputEvent(e) {
+         _input = e.target;
+         var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+         Arr.forEach.call(tables, function(table) {
+           Arr.forEach.call(table.tBodies, function(tbody) {
+             Arr.forEach.call(tbody.rows, _filter);
+           });
+         });
+       }
 
-      function _filter(row) {
-        var text = row.textContent.toLowerCase(),
-          val = _input.value.toLowerCase();
-        row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
-      }
+       function _filter(row) {
+         var text = row.textContent.toLowerCase(),
+           val = _input.value.toLowerCase();
+         row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+       }
 
-      return {
-        init: function() {
-          var inputs = document.getElementsByClassName('light-table-filter');
-          Arr.forEach.call(inputs, function(input) {
-            input.oninput = _onInputEvent;
-          });
-        }
-      };
-    })(Array.prototype);
+       return {
+         init: function() {
+           var inputs = document.getElementsByClassName('light-table-filter');
+           Arr.forEach.call(inputs, function(input) {
+             input.oninput = _onInputEvent;
+           });
+         }
+       };
+     })(Array.prototype);
 
-    document.addEventListener('readystatechange', function() {
-      if (document.readyState === 'complete') {
-        LightTableFilter.init();
-      }
-    });
+     document.addEventListener('readystatechange', function() {
+       if (document.readyState === 'complete') {
+         LightTableFilter.init();
+       }
+     });
 
-  })(document);*/
+   })(document);*/
 </script>
 <?php include_once "includes/footer.php"; ?>

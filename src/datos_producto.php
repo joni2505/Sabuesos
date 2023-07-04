@@ -1,5 +1,25 @@
 <?php
 	require("../conexion.php");
+  //efectivo datos de caja
+  if (isset($_POST['obtenerfectivo'])) {
+
+    $valores = array();
+    $idcaja = $_POST['idcaja'];
+   
+    //CONSULTAR
+    $resultados = mysqli_query($conexion, "SELECT SUM(ventas.total_venta)'efectivo' FROM ventas WHERE mediodepago='Efectivo' and idcaja=$idcaja");
+    while ($consulta = mysqli_fetch_array($resultados)) {
+  
+      $valores['efectivo'] = $consulta['efectivo'];
+      
+    }
+  
+  
+    sleep(1);
+    $valores = json_encode($valores);
+    echo $valores;
+  }
+
 //cobrar carrito venta
 if(isset($_POST['cobrar_carrito_venta']))
 	{

@@ -9,7 +9,7 @@ if (empty($existe) && $id_user != 1) {
 }
 if (!empty($_GET['id'])) {
     $id = $_GET['id'];
-    $query_delete = mysqli_query($conexion, "UPDATE cliente SET estado = 0 WHERE idcliente = $id");
+    $query_delete = mysqli_query($conexion, "DELETE FROM cliente WHERE idcliente = $id");
     mysqli_close($conexion);
-    header("Location: clientes.php");
+    header("Location: lista_cliente.php");
 }
