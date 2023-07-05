@@ -35,6 +35,7 @@ if(isset($_POST['cobrar_carrito_venta']))
         $observacion = $_POST['observacion'];
         $idcaja = $_POST['idcaja'];
         $vendedor = $_POST['vendedor'];
+        $bultos = $_POST['bultos'];
         date_default_timezone_set('America/Argentina/Buenos_Aires');
         $fecha=date("Y-m-d");
         $fechaComoEntero = strtotime($fecha);
@@ -59,7 +60,7 @@ if(isset($_POST['cobrar_carrito_venta']))
           echo '</script>';
         }else {
 
-          $query_insert = mysqli_query($conexion, "INSERT INTO factura(idcliente, idusuario, idlocal, numero_factura, total, importe, cambio, fecha, mes, año, observacion, idvendedor, idcaja, tipoFactura) values ('$idcliente', '$idusuario', '$idlocal', '$factura', '$total_input', '$importe', '$cambio', '$fecha', '$mes', '$año', '$observacion', '$vendedor', '$idcaja', '$tipoFactura')");
+          $query_insert = mysqli_query($conexion, "INSERT INTO factura(idcliente, idusuario, idlocal, numero_factura, total, importe, cambio, fecha, mes, año, observacion, idvendedor, idcaja, tipoFactura, bultos) values ('$idcliente', '$idusuario', '$idlocal', '$factura', '$total_input', '$importe', '$cambio', '$fecha', '$mes', '$año', '$observacion', '$vendedor', '$idcaja', '$tipoFactura', '$bultos')");
           if ($query_insert) {
                     echo '<script language="javascript">';
                     echo 'alert("Carrito Cobrado correctamente!!");';

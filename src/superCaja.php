@@ -70,6 +70,7 @@ if (!empty($_POST)) {
       <span class="input-group-text">Cierre de Caja</span>
 
       <select name="caja" id="caja" style="width:15%;" onchange="getefectivo();">
+      <option value="0">Seleccionar Caja</option>
         <?php
         //traer sedes
         include "../conexion.php";
@@ -195,7 +196,7 @@ if (!empty($_POST)) {
 
       success: function(valores) {
         $("#efectivoEnCaja").val(valores.efectivo);
-        alert(valores.efectivo);
+        alert("Efectivo de Caja: "+"$"+valores.efectivo);
       }
     })
   }
@@ -229,6 +230,10 @@ if (!empty($_POST)) {
 
       success: function(mensaje) {
         $('#mostrar').html(mensaje);
+        url = 'pdf/reporteCajaBlanco.php?idcaja=' +idcaja;
+        window.open(url, '_blank');
+        url = 'pdf/reporteCaja.php?idcaja=' +idcaja;
+        window.open(url, '_blank');
         window.location.reload();
       }
     });

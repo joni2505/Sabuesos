@@ -119,9 +119,20 @@ if (isset($_POST['cerrarCaja'])) {
   }
 
   //FACTURA B
-  $resultados = mysqli_query($conexion, "SELECT SUM(factura.total)'facturaB' FROM factura WHERE tipoFactura='Ticket' and idcaja='$idcaja'");
+  $resultados = mysqli_query($conexion, "SELECT SUM(factura.total)'facturaB' FROM factura WHERE tipoFactura='Factura_B' and idcaja='$idcaja'");
   while ($consulta = mysqli_fetch_array($resultados)) {
     $facturaB = $consulta['facturaB'];
+  }
+
+  //CANTIDAD DE FACTURAS EN BLANCO
+  $resultados = mysqli_query($conexion, "SELECT COUNT(idfactura)'cantFacturaBl' FROM factura WHERE idcaja='$idcaja'");
+  while ($consulta = mysqli_fetch_array($resultados)) {
+    $cantFacturaBl = $consulta['cantFacturaBl'];
+  }
+  //CANTIDAD DE ARTICULOS EN BLANCO
+  $resultados = mysqli_query($conexion, "SELECT SUM(bultos)'cantArticulosBl' FROM factura WHERE idcaja='$idcaja'");
+  while ($consulta = mysqli_fetch_array($resultados)) {
+    $cantArticulosBl = $consulta['cantArticulosBl'];
   }
 
   //FACTURA Comun
@@ -146,7 +157,7 @@ if (isset($_POST['cerrarCaja'])) {
   //cerrar caja insert en super caja
   $rs = mysqli_query($conexion, "UPDATE superCaja SET fechaCierre = '$fechaCierre', efectivoCierre = '$retiro',
         creditoCierre = '$credito', debitoCierre = '$debito', transferenciaCierre = '$transferencia', compras = '$compras', gastos = '$gastos', totalN = '$facturaComun',
-        totalB = '$facturaB', totalA = '$facturaA', cantVentas = '$cantVentas', cantArticulos = '$cantArticulos', totalDescuentos = '$totalDescuento', totalRecargos = '$totalRecargo', retiroEfectivo = '$retiroEfectivo', estado = 1 WHERE idsuperCaja='$idcaja'");
+        totalB = '$facturaB', totalA = '$facturaA', cantVentas = '$cantVentas', cantArticulos = '$cantArticulos', totalDescuentos = '$totalDescuento', totalRecargos = '$totalRecargo', retiroEfectivo = '$retiroEfectivo', estado = 1, cantFacturaBl = '$cantFacturaBl', cantArticulosBl = '$cantArticulosBl' WHERE idsuperCaja='$idcaja'");
   if ($rs) {
     echo '<script language="javascript">';
     echo 'alert("Caja Cerrada Correctamente!");';
@@ -163,6 +174,7 @@ if (isset($_POST['cerrarCaja'])) {
 <script type="text/javascript">
   function agregar() {
     //alert("Ready!");
+    var idcaja = <?= json_encode($idcaja) ?>;
     var efectivo = <?= json_encode($efectivo) ?>;
     var credito = <?= json_encode($credito) ?>;
     var debito = <?= json_encode($debito) ?>;

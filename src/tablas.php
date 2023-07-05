@@ -400,7 +400,8 @@ echo "</select>
 
       }
       echo "<h5>Total de Bultos: $totalProductos </h5>";
-
+      echo "
+      <input type='hidden' id='bultos2' value='$totalProductos'>";
       echo "<tfoot>";
       $resultados = mysqli_query($conexion,"SELECT SUM(total_venta)'total' FROM ventas where numero_factura='$numFactura' and ventas.idlocal=$idlocal and ventas.idcliente=$idcliente");
         while($consulta = mysqli_fetch_array($resultados))

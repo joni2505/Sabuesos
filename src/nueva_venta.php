@@ -358,6 +358,10 @@ $nf++;
             <input readonly="readonly" type="number" class="form-control" name="total_input" value="0" id="total_input" style='font-size: 20px; text-transform: uppercase; color: green;' required>
           </div>
           <div class="form-group">
+            <label>Cant. Articulos</label>
+            <input readonly="readonly" type="number" class="form-control" name="bultos" value="0" id="bultos" style='font-size: 20px; text-transform: uppercase; color: green;' required>
+          </div>
+          <div class="form-group">
             <label>Importe</label>
             <input type="number" id="importe" class="form-control" value="0" style='font-size: 20px; text-transform: uppercase; color: black;' onkeyup="if(event.keyCode ==13) calcular_cambio();" required>
           </div>
@@ -567,6 +571,7 @@ $nf++;
       observacion = $("#observacion").val();
       vendedor = $("#vendedor").val();
       idcaja = $("#caja").val();
+      bultos = $("#bultos").val();
       var parametros = {
         "cobrar_carrito_venta": "1",
         "idusuario": idusuario,
@@ -580,6 +585,7 @@ $nf++;
         "impresion": impresion,
         "observacion": observacion,
         "idcaja": idcaja,
+        "bultos": bultos,
         "vendedor": vendedor
 
       };
@@ -1076,6 +1082,7 @@ $nf++;
           $("#descuento").val("0");
           $("#interes").val("0");
           document.getElementById("total_input").value = document.getElementById("totalC").value;
+          document.getElementById("bultos").value = document.getElementById("bultos2").value;
           //limpiar();
 
 
