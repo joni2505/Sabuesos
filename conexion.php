@@ -1,9 +1,9 @@
 <?php
     //conexion local
     $host = "localhost";
-    $user = "u765647919_creating";
-    $clave = "600269Joni2505";
-    $bd = "u765647919_sabuesos";
+    $user = "root";
+    $clave = "";
+    $bd = "sabuesos";
 
     //conexion mysql remoto
     //$host = "185.213.81.103";

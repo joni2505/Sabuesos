@@ -29,34 +29,7 @@ $(document).ready(function () {
     });
   });
   
-  //tabla productos sueltos
-  function tabla_suelto()
-  { 
-  var parametros = 
-  {
-  
-  "tabla_suelto" : "1",
-  "variable" : "4"
-  };
-  
-  $.ajax({
-  data: parametros,
-  url: 'tablas.php',
-  type: 'POST',
-  
-  beforesend: function()
-  {
-  $('#mostrar_sueltos').html("Mensaje antes de Enviar");
-  
-  },
-  
-  success: function(mensaje)
-  {
-  $('#mostrar_sueltos').html(mensaje);
-  
-  }
-  });
-  }
+ 
   
   //agregar producto suelto nuevo
   function agregar_suelto()

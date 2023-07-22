@@ -1,11 +1,11 @@
 <?php include_once "includes/header.php";
     include "../conexion.php";
 $id_user = $_SESSION['idUser'];
-$permiso = "compras.php";
+$permiso = "compras";
 $sql = mysqli_query($conexion, "SELECT p.*, d.* FROM permisos p INNER JOIN detalle_permisos d ON p.id = d.id_permiso WHERE d.id_usuario = $id_user AND p.nombre = '$permiso'");
 $existe = mysqli_fetch_all($sql);
 if (empty($existe) && $id_user != 1) {
-    header("Location: permisos.php");
+  echo "<script> window.location.replace('permisos.php') </script>";
 }
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 $feha_actual=date("d-m-Y ");

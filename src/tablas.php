@@ -16,13 +16,17 @@ $var = 0;
            <th scope="col">Nombre</th>
            <th scope="col">Direccion</th>
            <th scope="col">Celular</th>
+           <th scope="col">Total Cuenta</th>
+           <th scope="col">Estado</th>
+           <th scope="col">Vencimiento</th>
          </tr>
          </thead>  
      ';
      $buscar = $_POST['buscar'];
     
  
-       $resultados = mysqli_query($conexion,"SELECT * FROM cliente WHERE nombre LIKE '%$buscar%' limit 50 ");
+       $resultados = mysqli_query($conexion,"SELECT cuenta_corrientes.idcliente, cuenta_corrientes.idcliente, nombre, direccion, celular, gran_total, cuenta_corrientes.estado, fecha_vencimiento FROM cuenta_corrientes
+       INNER JOIN cliente on cuenta_corrientes.idcliente=cliente.idcliente WHERE nombre LIKE '%$buscar%' limit 50 ");
        
      
      while($consulta = mysqli_fetch_array($resultados))
@@ -33,6 +37,14 @@ $var = 0;
             
              echo "<td>" . $consulta['direccion'] . "</td>";
              echo "<td>" . $consulta['celular'] . "</td>";
+             echo "<td>" ."$". $consulta['gran_total'] . "</td>";
+             if($consulta['estado']=="No Recibido"){
+              echo "<td bgcolor='#FFB6C1'>" . $consulta['estado'] . "</td>";
+             }else{
+              echo "<td bgcolor='#F0E68C'>" . $consulta['estado'] . "</td>";
+             }
+             
+             echo "<td>" . $consulta['fecha_vencimiento'] . "</td>";
              //echo "<td><a href='inscripcion.php?id=".$consulta['idalumno']."'><i class='fas fa-trash-alt'></i></a></td>";
              //echo "<td><a href='javascript: prueba();'> <img src='.' alt='Seleccionar'></a></td>";
              //echo "<td><input type='button' value='Seleccionar' class='btn btn-primary' name='btn_inscribir' onclick='prueba();'></td>";

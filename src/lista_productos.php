@@ -173,6 +173,39 @@ while($consulta = mysqli_fetch_array($resultados))
 <script type="text/javascript" src="js/funciones.js"></script> 
 
 <script type="text/javascript">
+
+ //tabla productos sueltos
+ function tabla_suelto()
+  { 
+    
+    idlocal = $("#idlocal").val();
+  var parametros = 
+  {
+  
+  "tabla_suelto" : "1",
+  "idlocal" : idlocal,
+  "variable" : "4"
+  };
+  
+  $.ajax({
+  data: parametros,
+  url: 'tablas.php',
+  type: 'POST',
+  
+  beforesend: function()
+  {
+  $('#mostrar_sueltos').html("Mensaje antes de Enviar");
+  
+  },
+  
+  success: function(mensaje)
+  {
+  $('#mostrar_sueltos').html(mensaje);
+  
+  }
+  });
+  }
+
   //previsualizar imagen  
 const $seleccionArchivos = document.querySelector("#imagen"),
 $imagenPrevisualizacion = document.querySelector("#imagenPrevisualizacion");
