@@ -164,7 +164,7 @@ if(isset($_POST['informeGanancias']))
            
           echo "</tr>";
 
-          echo '</table> ';    
+             
           
   }  
 }
@@ -292,7 +292,7 @@ function informe_ganancias(mes_int){
         mes = "Mayo";
   }
   if(mes_int == 6){
-        mes = "Jnio";
+        mes = "Junio";
   }
   if(mes_int == 7){
         mes = "Julio";
@@ -362,7 +362,7 @@ function informe(mes_int){
         mes = "Mayo";
   }
   if(mes_int == 6){
-        mes = "Jnio";
+        mes = "Junio";
   }
   if(mes_int == 7){
         mes = "Julio";
@@ -467,7 +467,7 @@ function informe_mensualCuenta(mes_int){
         mes = "Mayo";
   }
   if(mes_int == 6){
-        mes = "Jnio";
+        mes = "Junio";
   }
   if(mes_int == 7){
         mes = "Julio";

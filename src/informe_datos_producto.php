@@ -13,7 +13,13 @@ $fecha=date("Y-m-d H:i:s");
 $fechaComoEntero = strtotime($fecha);
 $año = date("Y", $fechaComoEntero);
 $mes = date("M", $fechaComoEntero);
-
+$rs = mysqli_query($conexion,"SELECT usuario.idlocal, locales.nombre_local FROM usuario INNER JOIN locales on usuario.idlocal=locales.idlocal WHERE usuario.idusuario ='$id_user'");
+while($row = mysqli_fetch_array($rs))
+{
+  //$valores['existe'] = "1"; //Esta variable no la usamos en el vídeo (se me olvido, lo siento xD). Aqui la uso en la linea 97 de registro.php
+  $local = $row['nombre_local'];
+  $idlocal = $row['idlocal'];
+}
 ?>
 <!-- Begin Page Content -->
 <div class="container-fluid">
@@ -22,6 +28,7 @@ $mes = date("M", $fechaComoEntero);
 	<div class="d-sm-flex align-items-center justify-content-between mb-4">
 		<h2 class="h3 mb-0 text-gray-800"> INFORME DEL PRODUCTO
     <input style="font-size: 16px; width:10%; text-transform: uppercase; color: black;" value="<?php echo $año?>" id="anio">
+    <input type="hidden" id="idlocal" name="idlocal" value="<?php echo $idlocal; ?>" >
     </h2>
 	</div>
 	<div class="row">
@@ -128,16 +135,18 @@ $mes = date("M", $fechaComoEntero);
 var cod = document.getElementById("buscador2").value;
 $('#codigo').val(cod);
 //alert(cod);
-buscar_datos_Producto();
+buscar_datos_Producto(cod);
 }
-function buscar_datos_Producto() 
+function buscar_datos_Producto(codigo) 
   {
     codigo = $("#codigo").val();
-  
+    idlocal = $("#idlocal").val();
+    //alert(codigo);
     
     var parametros = 
     {
     "codigo" : codigo,
+    "idlocal": idlocal,
     "buscar_producto": "1"
       
       

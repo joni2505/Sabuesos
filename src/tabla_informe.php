@@ -81,7 +81,7 @@ if(isset($_POST['informe_dato']))
                     </tr> ";
        
       echo "</tr>";
-
+        
       
   }
 
